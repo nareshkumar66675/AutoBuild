@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/jquery-3.1.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="App.js"></script>
+    <title>BMC</title>
+    <meta charset="utf-8" />
+</head>
+<body ng-app="BMCBuild" ng-controller="Build">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">BMC</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Task
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3 text-center"><h2>{{details.TaskName}}</h2></div>
+                            <div class="col-md-9">
+                                <div ng-show="status === 'Running'">
+                                    <div class="row row-eq-height">
+                                        <div class="col-md-offset-3 col-md-4 pull-right text-center center-block">
+                                            <h2><span class="label label-danger">{{status}}</span></h2>
+                                            <small style="color:lightgray">Elapsed Time: {{details.ElapsedTime}}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-show="status != 'Running'">
+                                    <div class="row">
+                                        <div class="col-md-3 col-md-offset-4"><button  type="button" class="btn btn-primary" ng-click="executeTask()">Start Task</button></div>
+                                        <div class="col-md-5">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <input type="checkbox" ng-model="IsCustomMail"  aria-label="...">
+                                                </span>
+                                                <input type="text" class="form-control" placeholder="Custom Email" ng-model="email" tex aria-label="...">
+                                            </div><!-- /input-group -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    Logs
+                                </div>
+                                <div class="pull-right" style="padding-right:5px">
+                                    <a href="#" ng-click="UpdatelogTable()">
+                                        <span class="glyphicon glyphicon glyphicon-refresh"></span>  
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-md-3 text-nowrap">
+                                                Time Stamp
+                                            </th>
+                                            <th class="col-md-9 col-sm-6">Log</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="log in logData">
+                                            <td class="col-md-3 text-nowrap">{{log.TimeStamp}}</td>
+                                            <td class="col-md-9 col-sm-6" style="word-break:break-all">{{log.LogData}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+</body>
+
+</html>

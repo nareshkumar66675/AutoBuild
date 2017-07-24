@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Tasks>
+  <!--
+  Tasks Configurations
+  Order - Task will be executed based on this number. If task has duplicate Order it will be considered as parallel task -required.
+  Name - Unique Name to identify Task -required
+  Description - A short description about the task - optional
+  Type - Task Type - Allowed Values {BATCH, EXE, CUSTOM} - BATCH & EXE behaves similarly, CUSTOM - Should be implemented. -required
+  Path - Path of any files/folder - optional
+  OnSucess - If task is a Success, this mentioned task id will be executed. -required
+  OnFailure - If Task is a Failure, this mentioned task id will be executed. - required
+  Dependents - Comma seperated task list;wait for mentioned task to cbe completed NOT IMPLEMENTED - optional
+  -->
+  
+  <TaskInfo Order="0" Name="FILEOP" Description="File Operations" Type="BATCH" Path="C:\BMC\BMC16.0\depot\BMC\BMC_16.x\Coding\Build\BMC_Build_Bat_Script_files\AutoBuild_1_File_Operations.bat" OnSucess="1" OnFailure="7" Dependents=""/>
+  <TaskInfo Order="1" Name="PERFORCE" Description="Perforce - Get Latest" Type="BATCH" Path="C:\BMC\BMC16.0\depot\BMC\BMC_16.x\Coding\Build\BMC_Build_Bat_Script_files\AutoBuild_2_GetLatest_SCM.bat" OnSucess="2" OnFailure="7" Dependents=""/>
+  <TaskInfo Order="2" Name="BUILD" Description="Projects Build" Type="BATCH" Path="C:\BMC\BMC16.0\depot\BMC\BMC_16.x\Coding\Build\BMC_Build_Bat_Script_files\AutoBuild_3_BuildSource.bat" OnSucess="3" OnFailure="7" Dependents=""/>
+  <TaskInfo Order="2" Name="DBCONSOLIDATION" Description="DB Consolidation" Type="BATCH" Path="C:\BMC\BMC16.0\depot\BMC\BMC_16.x\Coding\Build\BMC_Build_Bat_Script_files\AutoBuild_3_DBConsolidation.bat" OnSucess="3" OnFailure="7" Dependents=""/>
+  <TaskInfo Order="3" Name="CHECKERROR" Description="Check for Errors - Build and DB" Type="CUSTOM" Path="C:\BMC\BMC16.0\depot\BMC\BMC_16.x\Coding\Build\BMC_Build_Bat_Script_files" OnSucess="4" OnFailure="7" Dependents=""/>
+  <TaskInfo Order="4" Name="INSTALLER" Description="Create Installer" Type="BATCH" Path="C:\BMC\BMC16.0\depot\BMC\BMC_16.x\Coding\Build\BMC_Build_Bat_Script_files\2_BMC_MSI_Script.bat" OnSucess="5" OnFailure="7" Dependents=""/>
+  <TaskInfo Order="5" Name="CHECKERROR" Description="Check for Errors - Installer" Type="CUSTOM" Path="C:\BMC\BMC16.0\depot\BMC\BMC_16.x\Coding\Build\BMC_Build_Bat_Script_files" OnSucess="6" OnFailure="7" Dependents=""/>
+  <TaskInfo Order="6" Name="COPYINSTALLER" Description="Copy Installer" Type="CUSTOM" Path="" OnSucess="7" OnFailure="7" Dependents=""/>
+  <TaskInfo Order="7" Name="SENDMAIL" Description="Send Mail" Type="CUSTOM" Path="" OnSucess="-1" OnFailure="-1" Dependents=""/>
+</Tasks>
